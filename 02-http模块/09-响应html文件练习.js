@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
     // 2、读取文件内容
     let html = fs.readFileSync(__dirname + '/09-table.html')
 
-    res.end(html)
+    res.end(html)  //end方法的参数，可以是buffer和字符串
 
 })
 
