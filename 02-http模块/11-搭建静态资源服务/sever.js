@@ -30,10 +30,27 @@ const server = http.createServer((req, res) => {
 
   // 3、读取文件路径，若有就响应该文件内容
   fs.readFile(filePath, (err, data) => {
+
+    // 完善错误处理
     if (err) {
-      res.statusCode = 404;
-      res.end("404 Not Found");
-      return;
+        console.log(err);
+        res.setHeader("content-type", "text/html;chartset=utf-8");
+        
+        switch (err.code) {
+          case "ENOENT":
+            res.statusCode = 404;
+            res.end("<h1>404 Not Found</h1>");
+
+          case "EPERM":
+            res.statusCode = 403;
+            res.end("<h1>403 Forbidden</h1>");
+
+          case "ENOENT":
+            res.statusCode = 500;
+            res.end("<h1>Internal Server</h1>");
+        }
+
+        return;
     }
 
     // 获取文件后缀名
