@@ -3,6 +3,20 @@ const http = require("http");
 
 //导入fs模块
 const fs = require("fs");
+const path = require('path')
+
+// 声明mimes对象
+let mimes = {
+  html: "text/html",
+  css: "text/css",
+  js: "text/javascript",
+  png: "image/png",
+  jpg: "image/jpeg",
+  gif: "image/gif",
+  mp4: "video/mp4",
+  mp3: "audio/mpeg",
+  json: "application/json",
+};
 
 //创建服务对象
 const server = http.createServer((req, res) => {
@@ -21,6 +35,23 @@ const server = http.createServer((req, res) => {
       res.end("404 Not Found");
       return;
     }
+
+    // 获取文件后缀名
+    let ext = path.extname(filePath).slice(1)
+    // 获取对应类型
+    let type = mimes[ext]
+    if (type) {
+        // 匹配到
+        if (ext === 'html') {  //设置字符集，解决乱码问题
+            res.setHeader("content-type", type + ';chartset=utf-8');
+        } else {
+            res.setHeader("content-type", type);
+        }
+    } else {
+        // 没匹配到
+        res.setHeader("content-type", "application/octet-stream");  //浏览器在遇到该类型的响应时，会对响应体内容进行独立存储，也就是我们常见的 下载 效果
+    }
+    
 
     // 响应文件内容
     res.end(data);
