@@ -28,7 +28,8 @@ router.post("/accountList", function (req, res, next) {
   let id = shortid.generate()
   // 写入数据
   db.get("account").unshift({ id: id, ...req.body}).write();
-  res.send('添加成功')
+  // 动态设置信息
+  res.render("success", {msg: '添加', url: '/accountList'});
 });
 
 module.exports = router;

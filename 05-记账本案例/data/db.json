@@ -1,12 +1,28 @@
 {
   "account": [
     {
-      "id": "0onUy-ys3",
-      "title": "hello",
-      "date": "2024-08-19",
-      "type": "1",
-      "account": "1000",
-      "remark": "收入"
+      "id": "-Fb84EozD",
+      "title": "",
+      "date": "",
+      "type": "-1",
+      "account": "",
+      "remark": ""
+    },
+    {
+      "id": "R2lU4qGCw",
+      "title": "",
+      "date": "",
+      "type": "-1",
+      "account": "",
+      "remark": ""
+    },
+    {
+      "id": "7ss8Ht78p",
+      "title": "",
+      "date": "",
+      "type": "-1",
+      "account": "",
+      "remark": ""
     }
   ]
 }
