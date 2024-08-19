@@ -10,4 +10,11 @@ router.get("/accountList/creatAccount", function (req, res, next) {
   res.render("creat");
 });
 
+// 新增账单
+router.post("/accountList", function (req, res, next) {
+  // 获取请求体数据
+  console.log(req.body);
+  res.send('添加成功')
+});
+
 module.exports = router;
