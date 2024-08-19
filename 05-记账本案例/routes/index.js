@@ -15,7 +15,9 @@ const shortid = require("shortid");
 
 // 账单列表
 router.get('/accountList', function(req, res, next) {
-  res.render('list')
+  let accounts = db.get("account").value();
+  // console.log(accounts);
+  res.render("list", { accounts });
 });
 // 添加账单
 router.get("/accountList/creatAccount", function (req, res, next) {
