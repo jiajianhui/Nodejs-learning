@@ -45,7 +45,7 @@ const server = http.createServer((req, res) => {
             res.statusCode = 403;
             res.end("<h1>403 Forbidden</h1>");
 
-          case "ENOENT":
+          default:
             res.statusCode = 500;
             res.end("<h1>Internal Server</h1>");
         }
