@@ -13,10 +13,10 @@ app.set('views', path.resolve(__dirname, './views'))
 
 // 创建路由
 app.get("/home", (req, res) => {
-    // 3、render响应
-    // res.render('模版文件名', {数据})
-    let title = 'ejs'
-    res.render('home', {title})
+  let title = "ejs";
+  // 3、render响应
+  // res.render('模版文件名', {数据})
+  res.render("home", { title });
 });
 
 // 监听端口，启动服务

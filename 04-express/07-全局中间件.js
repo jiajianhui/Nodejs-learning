@@ -15,7 +15,7 @@ const app = express();
 function record(req, res, next) {
   // 获取url、ip
   let { url, ip } = req;
-  // 将信息保存在access.lpg中
+  // 将信息保存在access.log中
   fs.appendFileSync(path.resolve(__dirname, "./access.log"), `${url} ${ip} \r\n`); //使用path的绝对路径
 
   next()

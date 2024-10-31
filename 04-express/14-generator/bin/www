@@ -3,7 +3,9 @@
 /**
  * Module dependencies.
  */
-
+// app: 引入上一级目录的 app 模块（Express 应用主文件）。
+// debug: 使用 debug 模块调试信息。
+// http: Node.js 的 http 模块，用于创建 HTTP 服务器。
 var app = require('../app');
 var debug = require('debug')('14-generator:server');
 var http = require('http');
@@ -11,20 +13,23 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
+// 通过 process.env.PORT 读取环境变量中的端口号，或默认为 3000。然后调用 normalizePort 函数，将端口标准化为数字或字符串，并存储到 Express 应用中
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
+// 利用 http 模块创建服务器，并将 Express 应用（app）传入。这样，HTTP 服务器收到请求后会交由 Express 应用处理。
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
+// server.listen(port): 在指定端口上启动服务器监听。
+// server.on('error', onError): 监听错误事件，调用 onError 函数进行错误处理。
+// server.on('listening', onListening): 监听启动事件，调用 onListening 函数以确认服务器已成功启动。
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -32,18 +37,18 @@ server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
-
+// 端口标准化函数 normalizePort
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
-    return val;
+    return val; // 返回命名管道
   }
 
   if (port >= 0) {
     // port number
-    return port;
+    return port; // 返回端口号
   }
 
   return false;
@@ -52,7 +57,7 @@ function normalizePort(val) {
 /**
  * Event listener for HTTP server "error" event.
  */
-
+// 错误处理函数 onError
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -80,7 +85,7 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
+// 监听事件处理函数 onListening
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
